@@ -7,7 +7,7 @@ import json
 
 load_dotenv()
 database_name = env['Production_Database']
-host_path = env['Host_Path']
+host_path = env['DATABASE_URL']
 username = env['DB_User']
 password = env['DB_Password']
 
