@@ -44,7 +44,7 @@ def create_app(test_config=None):
         return jsonify({
             'success': True,
             'games': formattedGames
-        })
+        }), 200
       except:
         abort(404)
 
@@ -58,7 +58,7 @@ def create_app(test_config=None):
             return jsonify({
                 'success': True,
                 'reviews': returnReviews
-                })
+                }), 200
         else:
             abort(404)
       except:
@@ -79,8 +79,9 @@ def create_app(test_config=None):
           newGame = Game(title, type, genre, category, description)
           newGame.insert()
           return jsonify({
-              'success': True
-          })
+              'success': True,
+              'added_game': newGame.format()
+          }), 200
       else:
           abort(422)
 
@@ -98,8 +99,9 @@ def create_app(test_config=None):
           newReview = Review(game_id, rating, reviewer, review)
           newReview.insert()
           return jsonify({
-            'success': True
-            })
+            'success': True,
+            'added_review': newReview.format()
+            }), 200
       except:
           abort(404)
 
@@ -112,7 +114,7 @@ def create_app(test_config=None):
           DBGame.delete()
           return jsonify({
               'success': True
-          })
+          }), 200
       except:
           abort(404);
 
@@ -124,7 +126,7 @@ def create_app(test_config=None):
           DBReview.delete()
           return jsonify({
               'success': True
-          })
+          }), 200
       except:
           abort(404)
 
@@ -147,7 +149,7 @@ def create_app(test_config=None):
           DBGame.update()
           return jsonify({
               'success': True
-          })
+          }), 200
       except:
           abort(404)
 
@@ -167,7 +169,7 @@ def create_app(test_config=None):
           return jsonify({
               'success': True,
               'review': DBReview.format()
-          })
+          }), 200
       except:
           abort(404)
 
